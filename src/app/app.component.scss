@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex-direction: column;
+
+  background-color: black;
+  overflow-x: hidden; // hide horizontal
+  height: 100vh;
+  width: 100vw;
+}
+
+::ng-deep ::-webkit-scrollbar {
+  width: 12px;
+  background-color: rgba(27, 25, 25, 0.76);
+}
+
+::ng-deep ::-webkit-scrollbar-thumb {
+  border: 4px solid rgb(58, 57, 57);
+  background-clip: padding-box;
+  border-radius: 9999px;
+  background-color: rgba(29, 26, 26, 0.301);
+}

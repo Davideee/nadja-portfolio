@@ -1,0 +1,11 @@
+<div class="container">
+  <ng-container *ngFor="let image of imageData; let i = index;">
+    <img class="image image-nr-{{i}}"
+         src="../../assets/images/{{image.fileName}}"
+         id="image{{i}}"
+         [style.height.vw]="image.viewPortWidth"
+         [style.width]="'auto'"
+         [style.top.px]="image.distanceTop"
+         [style.left.%]="image.distanceLeft" />
+  </ng-container>
+</div>
