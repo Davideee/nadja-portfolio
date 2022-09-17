@@ -6,8 +6,9 @@ import {
   Renderer2,
   SimpleChanges,
 } from '@angular/core';
-import { fromEvent, Subject } from 'rxjs';
-import { IMAGE_DATA } from '../model/image-data';
+import { Subject } from 'rxjs';
+import ImageDataJson from '../../assets/config/images.json';
+import { ImageData } from '../model/image';
 
 @Component({
   selector: 'app-scroll-container',
@@ -17,9 +18,13 @@ import { IMAGE_DATA } from '../model/image-data';
 export class ScrollContainerComponent implements OnInit {
   @Input() position = 0;
   private unsubscribe = new Subject<void>();
+  imagesData: ImageData[];
 
-  imageData = IMAGE_DATA;
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    const str = JSON.stringify(ImageDataJson.images);
+    this.imagesData = JSON.parse(str);
+    console.log(this.imagesData[0]);
+  }
 
   ngOnInit(): void {}
 
@@ -28,12 +33,8 @@ export class ScrollContainerComponent implements OnInit {
       const pos = changes['position'].currentValue;
 
       const el = this.elementRef.nativeElement.querySelector('#image1');
-      console.log(`${pos + this.imageData[1].distanceTop}`);
-      this.renderer.setStyle(
-        el,
-        'top',
-        `${pos + this.imageData[0].distanceTop}px`
-      );
+      console.log(`${pos + this.imagesData[1].distanceTop}`);
+      this.renderer.setStyle(el, 'transform', `translateY(${pos}px)`);
     }
   }
 }
