@@ -2,27 +2,15 @@
   display: flex;
   flex-direction: column;
 
-  background-color: black;
+  background-color: rgb(29, 28, 28);
   overflow-x: hidden; // hide horizontal
   height: 100vh;
   width: 100vw;
 }
 
-.name-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  width: 100%;
-  & .text {
-    color: white;
-    font-size: 5vh;
-  }
-}
-
 ::ng-deep ::-webkit-scrollbar {
   width: 12px;
-  background-color: rgba(27, 25, 25, 0.76);
+  background-color: rgb(27, 25, 25, 0.76);
 }
 
 ::ng-deep ::-webkit-scrollbar-thumb {

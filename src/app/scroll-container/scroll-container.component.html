@@ -1,3 +1,8 @@
+<div class="name-container">
+  <p class="text">nadja</p>
+  <div class="spacer"></div>
+  <p class="text">geisser</p>
+</div>
 <div class="container">
   <ng-container *ngFor="let img of imagesData; let i = index;">
     <img class="image"
@@ -7,6 +12,7 @@
          [style.width]="'auto'"
          [style.top.px]="img.distanceTop"
          [style.left.%]="img.distanceLeft"
-         [style.z-index]="img.zIndex" />
+         [style.z-index]="img.zIndex"
+         (click)="openDialog(img)" />
   </ng-container>
 </div>

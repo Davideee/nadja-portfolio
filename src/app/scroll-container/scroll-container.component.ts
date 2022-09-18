@@ -1,23 +1,16 @@
 import {
   Component,
-  Directive,
   ElementRef,
-  Input,
+  HostListener,
   OnInit,
   Renderer2,
-  SimpleChanges,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import ImageDataJson from '../../assets/config/images.json';
-import { EMovement, ImageData } from '../model/image';
-
-@Directive({
-  selector: '[scrollMovement]',
-})
-export class ScrollMovementDirective {
-  constructor(private el: ElementRef) {
-    this.el.nativeElement.style.backgroundColor = 'yellow';
-  }
-}
+import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
+import { EMovement, ImageData, ImagesDto } from '../model/image';
+import { HttpClient } from '@angular/common/http';
+import { take, interval, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-scroll-container',
@@ -25,36 +18,56 @@ export class ScrollMovementDirective {
   styleUrls: ['./scroll-container.component.scss'],
 })
 export class ScrollContainerComponent implements OnInit {
-  @Input() position = 0;
   imagesData: ImageData[];
+  positionStored = 0;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+    public dialog: MatDialog,
+    private http: HttpClient
+  ) {
     const str = JSON.stringify(ImageDataJson.images);
     this.imagesData = JSON.parse(str);
+    fromEvent(this.elementRef.nativeElement, 'scroll').subscribe((e) =>
+      this.adaptPositions(elementRef.nativeElement.scrollTop)
+    );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadImagesFile();
+  }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['position'] && !changes['position'].firstChange) {
-      const pos = changes['position'].currentValue;
-      for (let i = 0; i < this.imagesData.length; i++) {
-        if (
-          EMovement[this.imagesData[i].movement] == EMovement.down ||
-          EMovement[this.imagesData[i].movement] == EMovement.up
-        ) {
-          const el = this.elementRef.nativeElement.querySelector(`#image${i}`);
-          let translateY = (pos * this.imagesData[i].velocity) / 100;
-          if (EMovement[this.imagesData[i].movement] == EMovement.up) {
-            translateY *= -1;
-          }
-          this.renderer.setStyle(
-            el,
-            'transform',
-            `translateY(${translateY}px)`
-          );
+  loadImagesFile() {
+    this.http
+      .get<ImagesDto>('assets/config/images.json')
+      .pipe(take(1))
+      .subscribe((data) => {
+        this.imagesData = data.images;
+      });
+  }
+
+  adaptPositions(position: number): void {
+    for (let i = 0; i < this.imagesData.length; i++) {
+      if (
+        EMovement[this.imagesData[i].movement] == EMovement.down ||
+        EMovement[this.imagesData[i].movement] == EMovement.up
+      ) {
+        const el = this.elementRef.nativeElement.querySelector(`#image${i}`);
+        let translateY = (position * this.imagesData[i].velocity) / 100;
+        if (EMovement[this.imagesData[i].movement] == EMovement.up) {
+          translateY *= -1;
         }
+        this.renderer.setStyle(el, 'transform', `translateY(${translateY}px)`);
       }
     }
+  }
+
+  openDialog(image: ImageData) {
+    // const dialogRef = this.dialog.open(ImageDialogComponent, {
+    //   data: image,
+    //   width: '90vw',
+    //   height: '90vh',
+    // });
   }
 }

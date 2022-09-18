@@ -13,3 +13,7 @@ export enum EMovement {
   up,
   static,
 }
+
+export interface ImagesDto {
+  images: ImageData[];
+}
