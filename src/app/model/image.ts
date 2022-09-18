@@ -1,10 +1,15 @@
 export interface ImageData {
   fileName: string;
-  positionX: number;
-  positionY: number;
-  viewPortWidth: number;
-  distanceTop: number;
-  distanceLeft: number;
-  startMoving: number;
-  stopMoving: number;
+  viewPortHeight: number; // in percent
+  distanceTop: number; // in px
+  distanceLeft: number; // in px
+  zIndex: number;
+  velocity: number; // for move down between 0 - 100% and for move up between 100% - 500%
+  movement: keyof typeof EMovement; // true when the image moves down with scroll down, opposite otherwise
+}
+
+export enum EMovement {
+  down,
+  up,
+  static,
 }

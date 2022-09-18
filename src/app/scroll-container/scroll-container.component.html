@@ -3,9 +3,10 @@
     <img class="image"
          src="../../assets/images/{{img.fileName}}"
          id="image{{i}}"
-         [style.height.vw]="img.viewPortWidth"
+         [style.height.vw]="img.viewPortHeight"
          [style.width]="'auto'"
          [style.top.px]="img.distanceTop"
-         [style.left.%]="img.distanceLeft" />
+         [style.left.%]="img.distanceLeft"
+         [style.z-index]="img.zIndex" />
   </ng-container>
 </div>

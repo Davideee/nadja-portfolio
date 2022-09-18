@@ -1,34 +1,58 @@
 {
   "images": [
     {
-      "fileName": "1.jpg",
-      "positionX": 50,
-      "positionY": 50,
-      "viewPortWidth": 10,
-      "distanceTop": 500,
+      "fileName": "velo.jpg",
+      "viewPortHeight": 10,
+      "distanceTop": 0,
       "distanceLeft": 20,
-      "startMoving": 300,
-      "stopMoving": 1000
+      "zIndex": 1,
+      "velocity": 75,
+      "movement": "down"
     },
     {
-      "fileName": "2.jpg",
-      "positionX": 50,
-      "positionY": 2000,
-      "viewPortWidth": 10,
+      "fileName": "space.jpg",
+      "viewPortHeight": 10,
       "distanceTop": 1500,
-      "distanceLeft": 50,
-      "startMoving": 300,
-      "stopMoving": 1000
+      "distanceLeft": 10,
+      "zIndex": 2,
+      "velocity": 90,
+      "movement": "down"
     },
     {
-      "fileName": "3.jpg",
-      "positionX": 50,
-      "positionY": 8000,
-      "viewPortWidth": 20,
+      "fileName": "street.jpg",
+      "viewPortHeight": 10,
       "distanceTop": 2500,
       "distanceLeft": 80,
-      "startMoving": 300,
-      "stopMoving": 1000
+      "zIndex": 3,
+      "velocity": 10,
+      "movement": "up"
+    },
+    {
+      "fileName": "sunset.jpg",
+      "viewPortHeight": 40,
+      "distanceTop": 2000,
+      "distanceLeft": 40,
+      "zIndex": 4,
+      "velocity": 50,
+      "movement": "down"
+    },
+    {
+      "fileName": "waterfall.jpg",
+      "viewPortHeight": 30,
+      "distanceTop": 600,
+      "distanceLeft": 60,
+      "zIndex": 5,
+      "velocity": 40,
+      "movement": "down"
+    },
+    {
+      "fileName": "falcon.jpg",
+      "viewPortHeight": 10,
+      "distanceTop": 3200,
+      "distanceLeft": 40,
+      "zIndex": 6,
+      "velocity": 20,
+      "movement": "up"
     }
   ]
 }
