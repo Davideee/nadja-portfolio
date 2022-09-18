@@ -1,0 +1,21 @@
+.name-container {
+  overflow-x: hidden; // hide horizontal
+  width: 100vw;
+  height: 20vh;
+  padding: 5vh;
+
+  & .text {
+    color: rgb(238, 238, 233);
+    font-family: 'AvantGarde', 'arial', sans-serif;
+    font-size: 345%;
+    line-height: 120%;
+  }
+
+  & .spacer {
+    height: 5%;
+  }
+
+  & .pf {
+    line-height: 0em;
+  }
+}

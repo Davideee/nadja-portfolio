@@ -1,4 +1,5 @@
-<div class="dialog-container">
-  <img class="image"
-       src="../../assets/images/{{image.fileName}}">
-</div>
+<img class="image"
+     src="../../assets/images/{{image.fileName}}"
+     [style.width]="imageStyleWidth"
+     [style.height]="imageStyleHeigth">
+<div class="text">{{imageDescription}}</div>

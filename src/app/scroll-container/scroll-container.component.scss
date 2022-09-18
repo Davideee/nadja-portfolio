@@ -1,28 +1,9 @@
 :host {
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-.name-container {
-  padding: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100vw;
-
-  & .text {
-    color: rgb(238, 238, 233);
-    font-family: 'AvantGarde', 'arial', sans-serif;
-    font-size: 80px;
-    letter-spacing: 0.02em;
-  }
-
-  & .spacer {
-    height: 67px;
-  }
-}
-
-.container {
+.image-container {
   height: 30000px;
   width: 100%;
   overflow-x: hidden; // hide horizontal

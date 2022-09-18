@@ -1,16 +1,10 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  Renderer2,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import ImageDataJson from '../../assets/config/images.json';
-import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 import { EMovement, ImageData, ImagesDto } from '../model/image';
 import { HttpClient } from '@angular/common/http';
-import { take, interval, fromEvent } from 'rxjs';
+import { take, fromEvent } from 'rxjs';
+import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 
 @Component({
   selector: 'app-scroll-container',
@@ -63,11 +57,19 @@ export class ScrollContainerComponent implements OnInit {
     }
   }
 
-  openDialog(image: ImageData) {
-    // const dialogRef = this.dialog.open(ImageDialogComponent, {
-    //   data: image,
-    //   width: '90vw',
-    //   height: '90vh',
-    // });
+  openDialog(index: number) {
+    console.log(window.outerHeight);
+    const el = this.elementRef.nativeElement.querySelector(
+      `#image${index}`
+    ) as HTMLElement;
+
+    this.dialog.open(ImageDialogComponent, {
+      data: {
+        image: this.imagesData[index],
+        heightBigger: el.offsetHeight > el.offsetWidth,
+      },
+      width: '90vw',
+      height: '90vh',
+    });
   }
 }
