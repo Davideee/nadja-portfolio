@@ -13,7 +13,7 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 })
 export class ScrollContainerComponent implements OnInit {
   imagesData: ImageData[];
-  positionStored = 0;
+  position = 0;
 
   constructor(
     private elementRef: ElementRef,
@@ -23,9 +23,10 @@ export class ScrollContainerComponent implements OnInit {
   ) {
     const str = JSON.stringify(ImageDataJson.images);
     this.imagesData = JSON.parse(str);
-    fromEvent(this.elementRef.nativeElement, 'scroll').subscribe((e) =>
-      this.adaptPositions(elementRef.nativeElement.scrollTop)
-    );
+    fromEvent(this.elementRef.nativeElement, 'scroll').subscribe((e) => {
+      this.position = elementRef.nativeElement.scrollTop;
+      this.adaptPositions(this.position);
+    });
   }
 
   ngOnInit(): void {
@@ -58,7 +59,6 @@ export class ScrollContainerComponent implements OnInit {
   }
 
   openDialog(index: number) {
-    console.log(window.outerHeight);
     const el = this.elementRef.nativeElement.querySelector(
       `#image${index}`
     ) as HTMLElement;

@@ -1,5 +1,6 @@
 .name-container {
   overflow-x: hidden; // hide horizontal
+  overflow-y: scroll;
   width: 100vw;
   height: 20vh;
   padding: 5vh;
@@ -7,12 +8,8 @@
   & .text {
     color: rgb(238, 238, 233);
     font-family: 'AvantGarde', 'arial', sans-serif;
-    font-size: 345%;
+    font-size: 480%;
     line-height: 120%;
-  }
-
-  & .spacer {
-    height: 5%;
   }
 
   & .pf {
