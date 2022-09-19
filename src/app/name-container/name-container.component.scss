@@ -1,18 +1,32 @@
 .name-container {
   overflow-x: hidden; // hide horizontal
-  overflow-y: scroll;
   width: 100vw;
-  height: 20vh;
+  height: 300vh;
   padding: 5vh;
+  position: relative;
+  background-color: rgb(238, 238, 233);
 
   & .text {
-    color: rgb(238, 238, 233);
+    color: rgb(29, 28, 28);
     font-family: 'AvantGarde', 'arial', sans-serif;
     font-size: 480%;
     line-height: 120%;
   }
 
-  & .pf {
-    line-height: 0em;
+  & .portrait {
+    height: 400vh;
+    width: 150vw;
+    position: absolute;
+    background-color: rgb(29, 28, 28);
+    left: -150vw;
+    top: 0;
+    z-index: 1;
+
+    & .text {
+      color: rgb(238, 238, 233);
+      font-family: 'AvantGarde', 'arial', sans-serif;
+      font-size: 480%;
+      line-height: 120%;
+    }
   }
 }
