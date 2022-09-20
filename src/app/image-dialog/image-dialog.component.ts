@@ -1,4 +1,10 @@
-import { Component, Inject, ElementRef, OnInit } from '@angular/core';
+import {
+  Component,
+  Inject,
+  ElementRef,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogData, ImageData } from '../model/image';
 
@@ -6,11 +12,12 @@ import { DialogData, ImageData } from '../model/image';
   selector: 'image-dialog',
   templateUrl: 'image-dialog.component.html',
   styleUrls: ['./image-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ImageDialogComponent {
   image: ImageData;
-  imageStyleHeigth: string;
-  imageStyleWidth: string;
+  imageStyleHeigth: number;
+  imageStyleWidth: number;
   imageDescription: string;
 
   constructor(
@@ -19,12 +26,7 @@ export class ImageDialogComponent {
   ) {
     this.image = data.image;
     this.imageDescription = data.image.description;
-    if (data.heightBigger) {
-      this.imageStyleHeigth = '80%';
-      this.imageStyleWidth = 'auto';
-    } else {
-      this.imageStyleHeigth = 'auto';
-      this.imageStyleWidth = '80%';
-    }
+    this.imageStyleHeigth = data.imageHeightPx;
+    this.imageStyleWidth = data.imageWidthPx;
   }
 }

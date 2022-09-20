@@ -14,9 +14,7 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 export class ScrollContainerComponent implements OnInit {
   imagesData: ImageData[];
   position = 0;
-  topFlag = true;
-  scrollHeight: number;
-  coverPercentage = 0;
+  formatRatio = 0;
 
   constructor(
     private elementRef: ElementRef,
@@ -26,55 +24,29 @@ export class ScrollContainerComponent implements OnInit {
   ) {
     const str = JSON.stringify(ImageDataJson.images);
     this.imagesData = JSON.parse(str);
-    this.scrollHeight =
-      document.documentElement.clientWidth +
-      document.documentElement.clientHeight;
+
+    this.formatRatio =
+      document.documentElement.clientHeight /
+      document.documentElement.clientWidth;
 
     fromEvent(window, 'resize').subscribe(() => {
-      this.scrollHeight =
-        document.documentElement.clientWidth +
+      this.formatRatio =
+        document.documentElement.clientWidth /
         document.documentElement.clientHeight;
-      const move =
-        (this.coverPercentage / 100) * document.documentElement.clientWidth;
-      this.movePortrait(move, move);
     });
+
     fromEvent(this.elementRef.nativeElement, 'scroll').subscribe((e) => {
       this.position = elementRef.nativeElement.scrollTop;
-
-      if (this.position < document.documentElement.clientWidth) {
-        // We are still on the top
-        const el = this.elementRef.nativeElement.querySelector('.portrait');
-        this.movePortrait(this.position, this.position);
-        this.coverPercentage =
-          this.position / document.documentElement.clientWidth;
-        this.topFlag = true;
-      } else {
+      if (this.position > document.documentElement.clientWidth * 1.1) {
         this.adaptPositions(
-          this.position - document.documentElement.clientWidth
+          this.position - document.documentElement.clientWidth * 1.1
         );
-        if (this.topFlag) {
-          this.movePortrait(
-            document.documentElement.clientWidth,
-            document.documentElement.clientWidth
-          );
-          this.coverPercentage = 100;
-          this.topFlag = false;
-        }
       }
     });
   }
 
   ngOnInit(): void {
     this.loadImagesFile();
-  }
-
-  movePortrait(directionX: number, directionY: number) {
-    const el = this.elementRef.nativeElement.querySelector('.portrait');
-    this.renderer.setStyle(
-      el,
-      'transform',
-      `translate3d(${directionX}px, ${directionY}px,0px)`
-    );
   }
 
   loadImagesFile() {
@@ -100,24 +72,37 @@ export class ScrollContainerComponent implements OnInit {
         this.renderer.setStyle(
           el,
           'transform',
-          `translate3d(${translateY}px,0px,0px)`
+          `translate3d(0px,${translateY}px,0px)`
         );
       }
     }
   }
 
   openDialog(index: number) {
-    const el = this.elementRef.nativeElement.querySelector(
-      `#image${index}`
-    ) as HTMLElement;
-
-    this.dialog.open(ImageDialogComponent, {
-      data: {
-        image: this.imagesData[index],
-        heightBigger: el.offsetHeight > el.offsetWidth,
-      },
-      width: '90vw',
-      height: '90vh',
-    });
+    // const el = this.elementRef.nativeElement.querySelector(
+    //   `#image${index}`
+    // ) as HTMLElement;
+    // let height = 0;
+    // let width = 0;
+    // if (el.offsetHeight > el.offsetWidth) {
+    //   height = document.documentElement.clientHeight * 0.85;
+    //   width = height / this.formatRatio;
+    // } else {
+    //   width = document.documentElement.clientHeight * 0.85;
+    //   height = width * this.formatRatio;
+    // }
+    // console.log('height: ', height);
+    // console.log('width: ', width);
+    // console.log('ratio', this.formatRatio);
+    // this.dialog.open(ImageDialogComponent, {
+    //   data: {
+    //     image: this.imagesData[index],
+    //     heightBigger: el.offsetHeight > el.offsetWidth,
+    //     imageHeightPx: height,
+    //     imageWidthPx: width,
+    //   },
+    //   maxWidth: '90vw',
+    //   maxHeight: '90vh',
+    // });
   }
 }
