@@ -73,7 +73,7 @@ export class ScrollContainerComponent implements OnInit {
     this.renderer.setStyle(
       el,
       'transform',
-      `translate(${directionX}px, ${directionY}px)`
+      `translate3d(${directionX}px, ${directionY}px,0px)`
     );
   }
 
@@ -97,7 +97,11 @@ export class ScrollContainerComponent implements OnInit {
         if (EMovement[this.imagesData[i].movement] == EMovement.up) {
           translateY *= -1;
         }
-        this.renderer.setStyle(el, 'transform', `translateY(${translateY}px)`);
+        this.renderer.setStyle(
+          el,
+          'transform',
+          `translate3d(${translateY}px,0px,0px)`
+        );
       }
     }
   }
