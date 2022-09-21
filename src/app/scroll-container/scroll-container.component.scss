@@ -4,13 +4,18 @@
 }
 
 .image-container {
+  z-index: 6;
   height: 10000px;
   width: 100%;
   overflow-x: hidden; // hide horizontal
   background-color: rgb(29, 28, 28);
   position: relative;
-
+  transform: translateY(-20vh);
   .image {
     position: absolute;
   }
+}
+
+app-name-container {
+  z-index: 1;
 }

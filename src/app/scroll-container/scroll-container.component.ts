@@ -37,9 +37,9 @@ export class ScrollContainerComponent implements OnInit {
 
     fromEvent(this.elementRef.nativeElement, 'scroll').subscribe((e) => {
       this.position = elementRef.nativeElement.scrollTop;
-      if (this.position > document.documentElement.clientWidth * 1.1) {
+      if (this.position > document.documentElement.clientWidth) {
         this.adaptPositions(
-          this.position - document.documentElement.clientWidth * 1.1
+          this.position - document.documentElement.clientWidth
         );
       }
     });
