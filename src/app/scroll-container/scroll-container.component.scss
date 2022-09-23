@@ -3,19 +3,112 @@
   overflow-x: hidden;
 }
 
-.image-container {
-  z-index: 6;
-  height: 10000px;
+.name-container {
   width: 100%;
-  overflow-x: hidden; // hide horizontal
-  background-color: rgb(29, 28, 28);
+  height: 300vh;
+  background-color: rgb(238, 238, 233);
+  display: flex;
+  justify-content: space-between;
+
+  & .text {
+    padding: 20vh 0 0 20vh;
+    color: rgb(48, 48, 48);
+    font-family: 'AvantGarde', 'arial', sans-serif;
+    font-size: 8vh;
+    line-height: 120%;
+    text-align: left;
+  }
+
+  & img {
+    padding: 10vh 20vh 0 0;
+    max-height: 75vh;
+  }
+}
+
+.image-container {
+  width: 100vw;
+  overflow: hidden;
+  background-color: rgb(48, 48, 48);
+
+  z-index: 7;
+  height: 11000px;
+
+  // move it outside the viewport
+  transform: translate3d(-100vw, 0vh, 0);
+
+  // flex for the name
+  display: flex;
+  justify-content: flex-end;
+
+  z-index: 11;
   position: relative;
-  transform: translateY(-20vh);
+
+  .text {
+    padding: 20vh 25vh 0 0vh;
+    color: rgb(238, 238, 233);
+    font-family: 'AvantGarde', 'arial', sans-serif;
+    font-size: 480%;
+    line-height: 120%;
+  }
+
   .image {
     position: absolute;
   }
 }
 
-app-name-container {
-  z-index: 1;
+@media only screen and (max-width: 768px) {
+  .name-container {
+    width: 100%;
+    height: 300vh;
+    background-color: rgb(238, 238, 233);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    & .text {
+      font-family: 'AvantGarde', 'arial', sans-serif;
+      font-size: 6vh;
+      line-height: 120%;
+      text-align: left;
+      padding: 5vh 0vh 10vh 0vh;
+    }
+
+    & img {
+      max-width: 70vw;
+      height: auto;
+      padding: unset;
+    }
+  }
+
+  .image-container {
+    width: 100vw;
+    overflow: hidden;
+    background-color: rgb(48, 48, 48);
+
+    z-index: 7;
+    height: 10000px;
+
+    // move it outside the viewport
+    transform: translate3d(-100vw, 0vh, 0);
+
+    // flex for the name
+    display: flex;
+    justify-content: flex-end;
+
+    z-index: 11;
+    position: relative;
+
+    .text {
+      padding: 5vh 5vh 0vh 0vh;
+      color: rgb(238, 238, 233);
+      font-family: 'AvantGarde', 'arial', sans-serif;
+      font-size: 6vh;
+      line-height: 120%;
+    }
+
+    .image {
+      position: absolute;
+    }
+  }
 }

@@ -17,8 +17,7 @@ export enum EMovement {
 
 export interface DialogData {
   image: ImageData;
-  imageWidthPx: number;
-  imageHeightPx: number;
+  heightBigger: boolean;
 }
 
 export interface ImagesDto {

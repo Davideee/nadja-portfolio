@@ -1,3 +1,9 @@
-<img src="../../assets/images/{{image.fileName}}"
-     [style.width.px]="imageStyleWidth"
-     [style.height.px]="imageStyleHeigth">
+<div class="dialog-container"
+     click="onClick()">
+  <picture>
+    <img class="image"
+         src="../../assets/images/{{image.fileName}}"
+         [style.max-width]="imageStyleWidth"
+         [style.max-height]="imageStyleHeigth">
+  </picture>
+</div>

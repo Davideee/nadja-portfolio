@@ -1,14 +1,23 @@
-<app-name-container [position]="position"></app-name-container>
+<div class="name-container">
+  <p class="text">nadja<br />geisser</p>
+  <picture>
+    <img src="../../assets/images/Nadja.png">
+  </picture>
+</div>
 <div class="image-container">
+  <p id="text-nadja"
+     class="text">nadja<br />geisser</p>
   <ng-container *ngFor="let img of imagesData; let i = index;">
-    <img class="image"
-         src="../../assets/images/{{img.fileName}}"
-         id="image{{i}}"
-         [style.height.vw]="img.viewPortHeight"
-         [style.width]="'auto'"
-         [style.top.px]="img.distanceTop"
-         [style.left.%]="img.distanceLeft"
-         [style.z-index]="img.zIndex"
-         (click)="openDialog(i)" />
+    <picture>
+      <img class="image"
+           src="../../assets/images/{{img.fileName}}"
+           id="image{{i}}"
+           [style.height.vw]="img.viewPortHeight"
+           [style.width]="'auto'"
+           [style.top.px]="img.distanceTop"
+           [style.left.%]="img.distanceLeft"
+           [style.z-index]="img.zIndex"
+           (click)="openDialog(i)" />
+    </picture>
   </ng-container>
 </div>

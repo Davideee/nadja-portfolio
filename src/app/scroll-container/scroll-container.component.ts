@@ -12,9 +12,16 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
   styleUrls: ['./scroll-container.component.scss'],
 })
 export class ScrollContainerComponent implements OnInit {
-  imagesData: ImageData[];
-  position = 0;
-  formatRatio = 0;
+  imagesData: ImageData[] = [];
+  private imagesDataRaw: ImageData[];
+  private animationFinished = false;
+  private coverPercentage = 0;
+  private position = 0;
+  private formatRatio = 0;
+  private REFERENCE_RATIO = 0.1;
+  protected scrollHeight = 0;
+  protected containerStartHeight = 11000;
+  containerHeight = 11000;
 
   constructor(
     private elementRef: ElementRef,
@@ -23,25 +30,35 @@ export class ScrollContainerComponent implements OnInit {
     private http: HttpClient
   ) {
     const str = JSON.stringify(ImageDataJson.images);
-    this.imagesData = JSON.parse(str);
-
-    this.formatRatio =
-      document.documentElement.clientHeight /
-      document.documentElement.clientWidth;
+    this.imagesDataRaw = JSON.parse(str);
+    for (let i = 0; i < this.imagesDataRaw.length; i++) {
+      this.imagesData.push({ ...this.imagesDataRaw[i] });
+    }
+    this.adaptImageParameters();
 
     fromEvent(window, 'resize').subscribe(() => {
-      this.formatRatio =
-        document.documentElement.clientWidth /
-        document.documentElement.clientHeight;
+      this.formatRatio = window.innerHeight / window.innerWidth;
+      this.adaptImageParameters();
     });
 
     fromEvent(this.elementRef.nativeElement, 'scroll').subscribe((e) => {
       this.position = elementRef.nativeElement.scrollTop;
-      if (this.position > document.documentElement.clientWidth) {
-        this.adaptPositions(
-          this.position - document.documentElement.clientWidth
-        );
+      this.containerHeight = this.containerStartHeight - this.position;
+      this.coverPercentage =
+        (this.position / document.documentElement.clientWidth) * 100;
+      if (this.coverPercentage <= 100) {
+        this.moveImageContainer();
+        this.animationFinished = false;
+      } else {
+        if (!this.animationFinished) {
+          this.moveImageContainer(0);
+          this.animationFinished = true;
+        }
       }
+      if (!this.position) {
+        this.moveImageContainer(-100);
+      }
+      this.adaptPositions(this.position - window.innerWidth);
     });
   }
 
@@ -49,6 +66,15 @@ export class ScrollContainerComponent implements OnInit {
     this.loadImagesFile();
   }
 
+  adaptImageParameters(): void {
+    this.formatRatio = window.innerHeight / window.innerWidth;
+    document.documentElement.clientWidth;
+    for (let i = 0; i < this.imagesData.length; i++) {
+      this.imagesData[i].distanceTop =
+        (this.imagesDataRaw[i].distanceTop * this.REFERENCE_RATIO) /
+        this.formatRatio;
+    }
+  }
   loadImagesFile() {
     this.http
       .get<ImagesDto>('assets/config/images.json')
@@ -56,6 +82,32 @@ export class ScrollContainerComponent implements OnInit {
       .subscribe((data) => {
         this.imagesData = data.images;
       });
+  }
+
+  moveImageContainer(move?: number) {
+    if (move !== undefined) {
+      const elContainer =
+        this.elementRef.nativeElement.querySelector('.image-container');
+      this.renderer.setStyle(
+        elContainer,
+        'transform',
+        `translate3d(${move}vw, -300vh,0vw)`
+      );
+    } else {
+      const elContainer =
+        this.elementRef.nativeElement.querySelector('.image-container');
+      this.renderer.setStyle(
+        elContainer,
+        'transform',
+        `translate3d(${-100 + this.coverPercentage}vw, -300vh,0vw)`
+      );
+      const elName = this.elementRef.nativeElement.querySelector('#text-nadja');
+      this.renderer.setStyle(
+        elName,
+        'transform',
+        `translate3d(0px, ${this.position}px,0vw)`
+      );
+    }
   }
 
   adaptPositions(position: number): void {
@@ -79,30 +131,18 @@ export class ScrollContainerComponent implements OnInit {
   }
 
   openDialog(index: number) {
-    // const el = this.elementRef.nativeElement.querySelector(
-    //   `#image${index}`
-    // ) as HTMLElement;
-    // let height = 0;
-    // let width = 0;
-    // if (el.offsetHeight > el.offsetWidth) {
-    //   height = document.documentElement.clientHeight * 0.85;
-    //   width = height / this.formatRatio;
-    // } else {
-    //   width = document.documentElement.clientHeight * 0.85;
-    //   height = width * this.formatRatio;
-    // }
-    // console.log('height: ', height);
-    // console.log('width: ', width);
-    // console.log('ratio', this.formatRatio);
-    // this.dialog.open(ImageDialogComponent, {
-    //   data: {
-    //     image: this.imagesData[index],
-    //     heightBigger: el.offsetHeight > el.offsetWidth,
-    //     imageHeightPx: height,
-    //     imageWidthPx: width,
-    //   },
-    //   maxWidth: '90vw',
-    //   maxHeight: '90vh',
-    // });
+    const el = this.elementRef.nativeElement.querySelector(
+      `#image${index}`
+    ) as HTMLElement;
+
+    this.dialog.open(ImageDialogComponent, {
+      data: {
+        image: this.imagesData[index],
+        heightBigger: el.offsetHeight > el.offsetWidth,
+      },
+      maxWidth: '90vw',
+      maxHeight: '90vh',
+      restoreFocus: true,
+    });
   }
 }

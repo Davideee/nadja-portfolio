@@ -2,10 +2,10 @@ import {
   Component,
   Inject,
   ElementRef,
-  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { fromEvent } from 'rxjs';
 import { DialogData, ImageData } from '../model/image';
 
 @Component({
@@ -16,17 +16,35 @@ import { DialogData, ImageData } from '../model/image';
 })
 export class ImageDialogComponent {
   image: ImageData;
-  imageStyleHeigth: number;
-  imageStyleWidth: number;
-  imageDescription: string;
+  imageStyleHeigth: string;
+  imageStyleWidth: string;
+  timeout: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    public dialogRef: MatDialogRef<ImageDialogComponent>
+    public dialogRef: MatDialogRef<ImageDialogComponent>,
+    private elementRef: ElementRef
   ) {
+    this.timeout = setTimeout(() => {
+      fromEvent(window, 'click').subscribe((e) => {
+        this.dialogRef.close();
+      });
+    }, 200);
+
     this.image = data.image;
-    this.imageDescription = data.image.description;
-    this.imageStyleHeigth = data.imageHeightPx;
-    this.imageStyleWidth = data.imageWidthPx;
+    if (data.heightBigger) {
+      this.imageStyleHeigth = '80vh';
+      this.imageStyleWidth = 'auto';
+    } else {
+      this.imageStyleWidth = '80vw';
+      this.imageStyleHeigth = 'auto';
+    }
+    fromEvent(this.elementRef.nativeElement, 'click').subscribe((e) => {
+      this.dialogRef.close();
+    });
+  }
+
+  onDestroy() {
+    clearTimeout(this.timeout);
   }
 }
