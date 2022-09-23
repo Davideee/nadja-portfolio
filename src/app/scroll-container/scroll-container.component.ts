@@ -65,6 +65,7 @@ export class ScrollContainerComponent implements OnInit {
       }
       this.calcNewImagePositions();
     });
+
     this.timeout = setTimeout(() => this.getImageSize(), 500);
   }
 
@@ -87,8 +88,8 @@ export class ScrollContainerComponent implements OnInit {
       width = document.getElementById(`image${i}`)?.clientWidth;
 
       if (height && width) {
-        this.imagesData[i].imageHeightVh = height;
-        this.imagesData[i].imageHeightVh = width;
+        this.imagesData[i].imageHeightPx = height;
+        this.imagesData[i].imageWidthPx = width;
       } else {
         console.log('Could not retrive image size. Try again.');
         this.timeout = setTimeout(() => this.getImageSize(), 500);
@@ -96,50 +97,61 @@ export class ScrollContainerComponent implements OnInit {
       }
     }
     this.translates = Array<number>(this.imagesData.length).fill(0);
+    // translates array is ready, and we got all image sizes
   }
 
   /** **********************************************************************************************
    * ..
    *********************************************************************************************** */
   calcNewImagePositions() {
-    let distanceTopToTop;
-    let distanceTopToBottom;
-    const FACTOR = 1.5;
+    // let distanceTopToTop;
+    // let distanceTopToBottom;
+    // const FACTOR = 1.0;
 
-    const currentWindowPositionTop = this.position / FACTOR;
-    const currentWindowPositionBottom =
-      this.position + window.innerHeight * FACTOR;
+    // const currentWindowPositionTop = this.position / FACTOR;
+    // const currentWindowPositionBottom =
+    //   this.position + window.innerHeight * FACTOR;
+
+    // console.log('window position top', currentWindowPositionTop);
+    // console.log('window position bottom', currentWindowPositionBottom);
+    // console.log('current position', this.position);
+
     const array: string[] = [];
 
     for (let i = 0; i < this.imagesData.length; i++) {
-      distanceTopToTop = this.imagesData[i].distanceTop + this.translates[i];
-      distanceTopToBottom =
-        this.imagesData[i].distanceTop -
-        this.imagesData[i].imageHeightVh +
-        this.translates[i];
-      const windowFromTop =
-        currentWindowPositionTop < distanceTopToBottom &&
-        currentWindowPositionBottom > distanceTopToTop;
-      const windowFromBottom =
-        currentWindowPositionTop < distanceTopToBottom &&
-        currentWindowPositionBottom > distanceTopToTop;
+      // distanceTopToTop = this.imagesData[i].distanceTop + this.translates[i];
+      // distanceTopToBottom =
+      //   this.imagesData[i].distanceTop -
+      //   this.imagesData[i].imageHeightPx +
+      //   this.translates[i];
+      // const windowFromTop =
+      //   currentWindowPositionTop < distanceTopToBottom &&
+      //   currentWindowPositionBottom > distanceTopToTop;
+      // const windowFromBottom =
+      //   currentWindowPositionTop < distanceTopToBottom &&
+      //   currentWindowPositionBottom > distanceTopToTop;
       let movement = 1;
-      if (windowFromTop || windowFromBottom) {
-        if (
-          EMovement[this.imagesData[i].movement] == EMovement.down ||
-          EMovement[this.imagesData[i].movement] == EMovement.up
-        ) {
-          if (EMovement[this.imagesData[i].movement] == EMovement.up) {
-            movement *= -1;
-          }
-          let translateY =
-            ((this.position * this.imagesData[i].velocity) / 100) * movement;
-          this.translates[i] = translateY;
-          this.moveImage(translateY, i);
-          // console.log(`${this.imagesData[i].fileName} , `, translateY);
-          array.push(this.imagesData[i].fileName);
+      // if (windowFromTop || windowFromBottom) {
+      if (
+        EMovement[this.imagesData[i].movement] == EMovement.down ||
+        EMovement[this.imagesData[i].movement] == EMovement.up
+      ) {
+        if (EMovement[this.imagesData[i].movement] == EMovement.up) {
+          movement *= -1;
         }
+        let translateY =
+          (((this.position - this.imagesData[i].distanceTop) *
+            this.imagesData[i].velocity) /
+            100) *
+          movement;
+
+        this.translates[i] = translateY;
+        // console.log(`move ${this.imagesData[i].fileName}: ${translateY}`);
+        this.moveImage(translateY, i);
+        // console.log(`${this.imagesData[i].fileName} , `, translateY);
+        array.push(this.imagesData[i].fileName);
       }
+      //   }
     }
     console.log(array);
   }

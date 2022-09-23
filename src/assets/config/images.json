@@ -33,7 +33,7 @@
       "distanceTop": 4500,
       "distanceLeft": 30,
       "zIndex": 4,
-      "velocity": 5,
+      "velocity": 25,
       "movement": "down"
     },
     {
@@ -42,7 +42,7 @@
       "distanceTop": 2700,
       "distanceLeft": 57.5,
       "zIndex": 10,
-      "velocity": 40,
+      "velocity": 25,
       "movement": "down"
     },
     {
@@ -51,7 +51,7 @@
       "distanceTop": 2050,
       "distanceLeft": 0,
       "zIndex": 7,
-      "velocity": 10,
+      "velocity": 25,
       "movement": "static"
     },
     {
@@ -60,7 +60,7 @@
       "distanceTop": 2700,
       "distanceLeft": 20,
       "zIndex": 13,
-      "velocity": 15,
+      "velocity": 30,
       "movement": "up"
     },
     {
@@ -68,8 +68,8 @@
       "viewPortHeight": 60,
       "distanceTop": 3900,
       "distanceLeft": 10,
-      "zIndex": 7,
-      "velocity": 15,
+      "zIndex": 10,
+      "velocity": 25,
       "movement": "down"
     },
     {
@@ -77,8 +77,8 @@
       "viewPortHeight": 70,
       "distanceTop": 5900,
       "distanceLeft": 5,
-      "zIndex": 11,
-      "velocity": 10,
+      "zIndex": 20,
+      "velocity": 20,
       "movement": "up"
     },
     {
@@ -87,7 +87,7 @@
       "distanceTop": 6100,
       "distanceLeft": 0,
       "zIndex": 7,
-      "velocity": 15,
+      "velocity": 30,
       "movement": "up"
     },
     {
@@ -96,7 +96,7 @@
       "distanceTop": 7000,
       "distanceLeft": 66,
       "zIndex": 7,
-      "velocity": 20,
+      "velocity": 40,
       "movement": "up"
     },
     {
@@ -105,7 +105,7 @@
       "distanceTop": 2800,
       "distanceLeft": 74,
       "zIndex": 7,
-      "velocity": 20,
+      "velocity": 30,
       "movement": "down"
     },
     {
@@ -114,7 +114,7 @@
       "distanceTop": 6620,
       "distanceLeft": 70,
       "zIndex": 15,
-      "velocity": 15,
+      "velocity": 20,
       "movement": "up"
     },
     {
@@ -123,7 +123,7 @@
       "distanceTop": 5500,
       "distanceLeft": 60,
       "zIndex": 1,
-      "velocity": 5,
+      "velocity": 35,
       "movement": "down"
     },
     {
@@ -132,7 +132,7 @@
       "distanceTop": 5300,
       "distanceLeft": 60,
       "zIndex": 16,
-      "velocity": 15,
+      "velocity": 25,
       "movement": "up"
     },
     {
@@ -150,7 +150,7 @@
       "distanceTop": 6500,
       "distanceLeft": 0,
       "zIndex": 2,
-      "velocity": 10,
+      "velocity": 30,
       "movement": "static"
     },
     {
@@ -159,7 +159,7 @@
       "distanceTop": 7200,
       "distanceLeft": 55,
       "zIndex": 4,
-      "velocity": 15,
+      "velocity": 30,
       "movement": "static"
     },
     {
@@ -168,7 +168,7 @@
       "distanceTop": 8000,
       "distanceLeft": 0.5,
       "zIndex": 3,
-      "velocity": 15,
+      "velocity": 32,
       "movement": "up"
     }
   ]
