@@ -21,7 +21,7 @@ export class ScrollContainerComponent implements OnInit {
   private REFERENCE_RATIO = 0.202;
   protected scrollHeight = 0;
   private timeout;
-  private translates: number[] = [];
+  // private translates: number[] = [];
 
   /** **********************************************************************************************
    * ..
@@ -96,7 +96,7 @@ export class ScrollContainerComponent implements OnInit {
         break;
       }
     }
-    this.translates = Array<number>(this.imagesData.length).fill(0);
+    // this.translates = Array<number>(this.imagesData.length).fill(0);
     // translates array is ready, and we got all image sizes
   }
 
@@ -145,15 +145,14 @@ export class ScrollContainerComponent implements OnInit {
             100) *
           movement;
 
-        this.translates[i] = translateY;
+        // this.translates[i] = translateY;
         // console.log(`move ${this.imagesData[i].fileName}: ${translateY}`);
         this.moveImage(translateY, i);
         // console.log(`${this.imagesData[i].fileName} , `, translateY);
-        array.push(this.imagesData[i].fileName);
+        // array.push(this.imagesData[i].fileName);
       }
       //   }
     }
-    console.log(array);
   }
 
   /** **********************************************************************************************

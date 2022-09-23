@@ -42,7 +42,7 @@
       "distanceTop": 2700,
       "distanceLeft": 57.5,
       "zIndex": 10,
-      "velocity": 25,
+      "velocity": 40,
       "movement": "down"
     },
     {
