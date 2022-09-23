@@ -69,7 +69,7 @@
       "distanceTop": 3900,
       "distanceLeft": 10,
       "zIndex": 7,
-      "velocity": 30,
+      "velocity": 15,
       "movement": "down"
     },
     {
@@ -78,7 +78,7 @@
       "distanceTop": 5900,
       "distanceLeft": 5,
       "zIndex": 11,
-      "velocity": 30,
+      "velocity": 10,
       "movement": "up"
     },
     {
@@ -105,7 +105,7 @@
       "distanceTop": 2800,
       "distanceLeft": 74,
       "zIndex": 7,
-      "velocity": 25,
+      "velocity": 20,
       "movement": "down"
     },
     {
@@ -114,7 +114,7 @@
       "distanceTop": 6620,
       "distanceLeft": 70,
       "zIndex": 15,
-      "velocity": 25,
+      "velocity": 15,
       "movement": "up"
     },
     {
@@ -141,7 +141,7 @@
       "distanceTop": 9300,
       "distanceLeft": 40,
       "zIndex": 16,
-      "velocity": 25,
+      "velocity": 20,
       "movement": "up"
     },
     {
@@ -168,7 +168,7 @@
       "distanceTop": 8000,
       "distanceLeft": 0.5,
       "zIndex": 3,
-      "velocity": 25,
+      "velocity": 15,
       "movement": "up"
     }
   ]
