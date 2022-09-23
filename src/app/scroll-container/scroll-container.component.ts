@@ -20,8 +20,6 @@ export class ScrollContainerComponent implements OnInit {
   private formatRatio = 0;
   private REFERENCE_RATIO = 0.1;
   protected scrollHeight = 0;
-  protected containerStartHeight = 11000;
-  containerHeight = 11000;
 
   constructor(
     private elementRef: ElementRef,
@@ -43,7 +41,6 @@ export class ScrollContainerComponent implements OnInit {
 
     fromEvent(this.elementRef.nativeElement, 'scroll').subscribe((e) => {
       this.position = elementRef.nativeElement.scrollTop;
-      this.containerHeight = this.containerStartHeight - this.position;
       this.coverPercentage =
         (this.position / document.documentElement.clientWidth) * 100;
       if (this.coverPercentage <= 100) {
