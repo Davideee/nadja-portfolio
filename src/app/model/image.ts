@@ -7,6 +7,8 @@ export interface ImageData {
   velocity: number; // for move down between 0 - 100% and for move up between 100% - 500%
   movement: keyof typeof EMovement; // true when the image moves down with scroll down, opposite otherwise
   description: string;
+  imageHeightVh: number;
+  imageWidthVw: number;
 }
 
 export enum EMovement {

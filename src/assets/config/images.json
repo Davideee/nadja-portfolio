@@ -3,192 +3,173 @@
     {
       "fileName": "FrauPortrait.png",
       "viewPortHeight": 50,
-      "distanceTop": 3500,
-      "distanceLeft": 5,
+      "distanceTop": 1500,
+      "distanceLeft": 50,
       "zIndex": 10,
       "velocity": 10,
-      "movement": "static",
-      "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+      "movement": "static"
     },
     {
       "fileName": "hug.png",
       "viewPortHeight": 30,
-      "distanceTop": 6700,
+      "distanceTop": 5200,
       "distanceLeft": 57,
       "zIndex": 10,
-      "velocity": 25,
-      "movement": "up",
-      "description": "Dini mer isch cool."
+      "velocity": 15,
+      "movement": "up"
     },
     {
       "fileName": "Marseille_Sky.png",
       "viewPortHeight": 70,
-      "distanceTop": 4900,
+      "distanceTop": 3400,
       "distanceLeft": 0,
       "zIndex": 8,
       "velocity": 12,
-      "movement": "up",
-      "description": "Dini mer isch cool."
+      "movement": "up"
     },
     {
       "fileName": "Marseille.png",
       "viewPortHeight": 50,
-      "distanceTop": 6000,
+      "distanceTop": 4500,
       "distanceLeft": 30,
       "zIndex": 4,
       "velocity": 5,
-      "movement": "down",
-      "description": "Dini mer isch cool."
+      "movement": "down"
     },
     {
       "fileName": "Pillow.png",
       "viewPortHeight": 60,
-      "distanceTop": 2500,
+      "distanceTop": 2700,
       "distanceLeft": 57.5,
       "zIndex": 10,
       "velocity": 40,
-      "movement": "down",
-      "description": "Dini mer isch cool."
+      "movement": "down"
     },
     {
       "fileName": "stayhungry.png",
       "viewPortHeight": 77.9,
-      "distanceTop": 3550,
+      "distanceTop": 2050,
       "distanceLeft": 0,
       "zIndex": 7,
       "velocity": 10,
-      "movement": "static",
-      "description": "Dini mer isch cool."
+      "movement": "static"
     },
     {
       "fileName": "Handke.png",
       "viewPortHeight": 30,
-      "distanceTop": 4200,
+      "distanceTop": 2700,
       "distanceLeft": 20,
       "zIndex": 13,
-      "velocity": 80,
-      "movement": "up",
-      "description": "Dini mer isch cool."
+      "velocity": 15,
+      "movement": "up"
     },
     {
       "fileName": "verbluehen_color.png",
       "viewPortHeight": 60,
-      "distanceTop": 5400,
+      "distanceTop": 3900,
       "distanceLeft": 10,
       "zIndex": 7,
       "velocity": 30,
-      "movement": "down",
-      "description": "Dini mer isch cool."
+      "movement": "down"
     },
     {
       "fileName": "verbluehen_rosa.png",
       "viewPortHeight": 70,
-      "distanceTop": 7400,
+      "distanceTop": 5900,
       "distanceLeft": 5,
       "zIndex": 11,
-      "velocity": 60,
-      "movement": "up",
-      "description": "Dini mer isch cool."
+      "velocity": 30,
+      "movement": "up"
     },
     {
       "fileName": "warumliegtmeinherzsoschwerbeieuch.png",
       "viewPortHeight": 60,
-      "distanceTop": 7600,
+      "distanceTop": 6100,
       "distanceLeft": 0,
       "zIndex": 7,
-      "velocity": 40,
-      "movement": "up",
-      "description": "Dini mer isch cool."
+      "velocity": 15,
+      "movement": "up"
     },
     {
       "fileName": "Malerei_Frauvonhinten.png",
       "viewPortHeight": 28,
-      "distanceTop": 8500,
+      "distanceTop": 7000,
       "distanceLeft": 66,
       "zIndex": 7,
-      "velocity": 90,
-      "movement": "up",
-      "description": "Dini mer isch cool."
+      "velocity": 20,
+      "movement": "up"
     },
     {
       "fileName": "Flower.png",
       "viewPortHeight": 35,
-      "distanceTop": 3600,
+      "distanceTop": 2800,
       "distanceLeft": 74,
       "zIndex": 7,
       "velocity": 25,
-      "movement": "down",
-      "description": "Dini mer isch cool."
+      "movement": "down"
     },
     {
       "fileName": "Malerei_Mannvonhinten.png",
       "viewPortHeight": 30,
-      "distanceTop": 8120,
+      "distanceTop": 6620,
       "distanceLeft": 70,
       "zIndex": 15,
       "velocity": 25,
-      "movement": "up",
-      "description": "Dini mer isch cool."
+      "movement": "up"
     },
     {
       "fileName": "Marseille_Fussballplatz.png",
       "viewPortHeight": 60,
-      "distanceTop": 7000,
+      "distanceTop": 5500,
       "distanceLeft": 60,
       "zIndex": 1,
       "velocity": 5,
-      "movement": "down",
-      "description": "Dini mer isch cool."
+      "movement": "down"
     },
     {
       "fileName": "tuesttresbelle.png",
       "viewPortHeight": 40,
-      "distanceTop": 6800,
+      "distanceTop": 5300,
       "distanceLeft": 60,
       "zIndex": 16,
-      "velocity": 80,
-      "movement": "up",
-      "description": "Dini mer isch cool."
+      "velocity": 15,
+      "movement": "up"
     },
     {
       "fileName": "PostIt.png",
       "viewPortHeight": 80,
-      "distanceTop": 12800,
+      "distanceTop": 9300,
       "distanceLeft": 40,
       "zIndex": 16,
-      "velocity": 80,
-      "movement": "up",
-      "description": "Dini mer isch cool."
+      "velocity": 25,
+      "movement": "up"
     },
     {
       "fileName": "Megafon_Illu.png",
       "viewPortHeight": 40,
-      "distanceTop": 8000,
+      "distanceTop": 6500,
       "distanceLeft": 0,
       "zIndex": 2,
-      "velocity": 80,
-      "movement": "static",
-      "description": "Dini mer isch cool."
+      "velocity": 10,
+      "movement": "static"
     },
     {
       "fileName": "wolken.png",
       "viewPortHeight": 60,
-      "distanceTop": 8700,
+      "distanceTop": 7200,
       "distanceLeft": 55,
-      "zIndex": 2,
-      "velocity": 40,
-      "movement": "static",
-      "description": "Dini mer isch cool."
+      "zIndex": 4,
+      "velocity": 15,
+      "movement": "static"
     },
     {
       "fileName": "sky.png",
       "viewPortHeight": 65,
-      "distanceTop": 12500,
+      "distanceTop": 8000,
       "distanceLeft": 0.5,
-      "zIndex": 1,
-      "velocity": 60,
-      "movement": "up",
-      "description": "Dini mer isch cool."
+      "zIndex": 3,
+      "velocity": 25,
+      "movement": "up"
     }
   ]
 }

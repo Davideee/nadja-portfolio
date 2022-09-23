@@ -18,9 +18,14 @@ export class ScrollContainerComponent implements OnInit {
   private coverPercentage = 0;
   private position = 0;
   private formatRatio = 0;
-  private REFERENCE_RATIO = 0.1;
+  private REFERENCE_RATIO = 0.202;
   protected scrollHeight = 0;
+  private timeout;
+  private translates: number[] = [];
 
+  /** **********************************************************************************************
+   * ..
+   *********************************************************************************************** */
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
@@ -32,11 +37,14 @@ export class ScrollContainerComponent implements OnInit {
     for (let i = 0; i < this.imagesDataRaw.length; i++) {
       this.imagesData.push({ ...this.imagesDataRaw[i] });
     }
-    this.adaptImageParameters();
+    if (window.innerWidth < 768) {
+      this.adaptImageParameters();
+    }
 
     fromEvent(window, 'resize').subscribe(() => {
-      this.formatRatio = window.innerHeight / window.innerWidth;
-      this.adaptImageParameters();
+      if (window.innerWidth < 768) {
+        this.adaptImageParameters();
+      }
     });
 
     fromEvent(this.elementRef.nativeElement, 'scroll').subscribe((e) => {
@@ -55,14 +63,90 @@ export class ScrollContainerComponent implements OnInit {
       if (!this.position) {
         this.moveImageContainer(-100);
       }
-      this.adaptPositions(this.position - window.innerWidth);
+      this.calcNewImagePositions();
     });
+    this.timeout = setTimeout(() => this.getImageSize(), 500);
   }
 
+  /** **********************************************************************************************
+   * ..
+   *********************************************************************************************** */
   ngOnInit(): void {
     this.loadImagesFile();
   }
 
+  /** **********************************************************************************************
+   * ..
+   *********************************************************************************************** */
+  getImageSize() {
+    let height;
+    let width;
+    for (let i = 0; i < this.imagesData.length; i++) {
+      const el = this.elementRef.nativeElement.querySelector(`#image${i}`);
+      height = document.getElementById(`image${i}`)?.clientHeight;
+      width = document.getElementById(`image${i}`)?.clientWidth;
+
+      if (height && width) {
+        this.imagesData[i].imageHeightVh = height;
+        this.imagesData[i].imageHeightVh = width;
+      } else {
+        console.log('Could not retrive image size. Try again.');
+        this.timeout = setTimeout(() => this.getImageSize(), 500);
+        break;
+      }
+    }
+    this.translates = Array<number>(this.imagesData.length).fill(0);
+  }
+
+  /** **********************************************************************************************
+   * ..
+   *********************************************************************************************** */
+  calcNewImagePositions() {
+    let distanceTopToTop;
+    let distanceTopToBottom;
+    const FACTOR = 1.5;
+
+    const currentWindowPositionTop = this.position / FACTOR;
+    const currentWindowPositionBottom =
+      this.position + window.innerHeight * FACTOR;
+    const array: string[] = [];
+
+    for (let i = 0; i < this.imagesData.length; i++) {
+      distanceTopToTop = this.imagesData[i].distanceTop + this.translates[i];
+      distanceTopToBottom =
+        this.imagesData[i].distanceTop -
+        this.imagesData[i].imageHeightVh +
+        this.translates[i];
+      const windowFromTop =
+        currentWindowPositionTop < distanceTopToBottom &&
+        currentWindowPositionBottom > distanceTopToTop;
+      const windowFromBottom =
+        currentWindowPositionTop < distanceTopToBottom &&
+        currentWindowPositionBottom > distanceTopToTop;
+      let movement = 1;
+      if (windowFromTop || windowFromBottom) {
+        if (
+          EMovement[this.imagesData[i].movement] == EMovement.down ||
+          EMovement[this.imagesData[i].movement] == EMovement.up
+        ) {
+          if (EMovement[this.imagesData[i].movement] == EMovement.up) {
+            movement *= -1;
+          }
+          let translateY =
+            ((this.position * this.imagesData[i].velocity) / 100) * movement;
+          this.translates[i] = translateY;
+          this.moveImage(translateY, i);
+          // console.log(`${this.imagesData[i].fileName} , `, translateY);
+          array.push(this.imagesData[i].fileName);
+        }
+      }
+    }
+    console.log(array);
+  }
+
+  /** **********************************************************************************************
+   * ..
+   *********************************************************************************************** */
   adaptImageParameters(): void {
     this.formatRatio = window.innerHeight / window.innerWidth;
     document.documentElement.clientWidth;
@@ -72,6 +156,10 @@ export class ScrollContainerComponent implements OnInit {
         this.formatRatio;
     }
   }
+
+  /** **********************************************************************************************
+   * ..
+   *********************************************************************************************** */
   loadImagesFile() {
     this.http
       .get<ImagesDto>('assets/config/images.json')
@@ -81,6 +169,9 @@ export class ScrollContainerComponent implements OnInit {
       });
   }
 
+  /** **********************************************************************************************
+   * ..
+   *********************************************************************************************** */
   moveImageContainer(move?: number) {
     if (move !== undefined) {
       const elContainer =
@@ -107,26 +198,23 @@ export class ScrollContainerComponent implements OnInit {
     }
   }
 
-  adaptPositions(position: number): void {
-    for (let i = 0; i < this.imagesData.length; i++) {
-      if (
-        EMovement[this.imagesData[i].movement] == EMovement.down ||
-        EMovement[this.imagesData[i].movement] == EMovement.up
-      ) {
-        const el = this.elementRef.nativeElement.querySelector(`#image${i}`);
-        let translateY = (position * this.imagesData[i].velocity) / 100;
-        if (EMovement[this.imagesData[i].movement] == EMovement.up) {
-          translateY *= -1;
-        }
-        this.renderer.setStyle(
-          el,
-          'transform',
-          `translate3d(0px,${translateY}px,0px)`
-        );
-      }
-    }
+  /** **********************************************************************************************
+   * ..
+   *********************************************************************************************** */
+  moveImage(position: number, imageNumber: number): void {
+    const el = this.elementRef.nativeElement.querySelector(
+      `#image${imageNumber}`
+    );
+    this.renderer.setStyle(
+      el,
+      'transform',
+      `translate3d(0px,${position}px,0px)`
+    );
   }
 
+  /** **********************************************************************************************
+   * ..
+   *********************************************************************************************** */
   openDialog(index: number) {
     const el = this.elementRef.nativeElement.querySelector(
       `#image${index}`

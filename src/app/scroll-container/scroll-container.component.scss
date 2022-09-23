@@ -27,11 +27,11 @@
 
 .image-container {
   width: 100vw;
-  overflow: hidden;
+  overflow: visible;
   background-color: rgb(48, 48, 48);
 
   z-index: 7;
-  height: 11000px;
+  height: 1100%;
 
   // move it outside the viewport
   transform: translate3d(-100vw, 0vh, 0);
@@ -83,7 +83,7 @@
 
   .image-container {
     width: 100vw;
-    overflow: hidden;
+    overflow: visible;
     background-color: rgb(48, 48, 48);
 
     z-index: 7;
