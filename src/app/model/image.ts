@@ -24,4 +24,5 @@ export interface DialogData {
 
 export interface ImagesDto {
   images: ImageData[];
+  pageHeight: number;
 }

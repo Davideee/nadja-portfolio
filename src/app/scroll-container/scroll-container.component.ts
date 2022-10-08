@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import ImageDataJson from '../../assets/config/images.json';
+import ImageDataMobileJson from '../../assets/config/images.mobile.json';
 import { EMovement, ImageData, ImagesDto } from '../model/image';
 import { HttpClient } from '@angular/common/http';
 import { take, fromEvent } from 'rxjs';
@@ -17,11 +18,8 @@ export class ScrollContainerComponent implements OnInit {
   private animationFinished = false;
   private coverPercentage = 0;
   private position = 0;
-  private formatRatio = 0;
-  private REFERENCE_RATIO = 0.202;
-  protected scrollHeight = 0;
   private timeout;
-  // private translates: number[] = [];
+  pageHeight = 850;
 
   /** **********************************************************************************************
    * ..
@@ -32,20 +30,19 @@ export class ScrollContainerComponent implements OnInit {
     public dialog: MatDialog,
     private http: HttpClient
   ) {
-    const str = JSON.stringify(ImageDataJson.images);
+    let str;
+    if (window.innerWidth < 768) {
+      str = JSON.stringify(ImageDataMobileJson.images);
+    } else {
+      str = JSON.stringify(ImageDataJson.images);
+    }
     this.imagesDataRaw = JSON.parse(str);
+    this.pageHeight = JSON.parse(
+      JSON.stringify(ImageDataMobileJson.pageHeight)
+    );
     for (let i = 0; i < this.imagesDataRaw.length; i++) {
       this.imagesData.push({ ...this.imagesDataRaw[i] });
     }
-    if (window.innerWidth < 768) {
-      this.adaptImageParameters();
-    }
-
-    fromEvent(window, 'resize').subscribe(() => {
-      if (window.innerWidth < 768) {
-        this.adaptImageParameters();
-      }
-    });
 
     fromEvent(this.elementRef.nativeElement, 'scroll').subscribe((e) => {
       this.position = elementRef.nativeElement.scrollTop;
@@ -96,42 +93,14 @@ export class ScrollContainerComponent implements OnInit {
         break;
       }
     }
-    // this.translates = Array<number>(this.imagesData.length).fill(0);
-    // translates array is ready, and we got all image sizes
   }
 
   /** **********************************************************************************************
    * ..
    *********************************************************************************************** */
   calcNewImagePositions() {
-    // let distanceTopToTop;
-    // let distanceTopToBottom;
-    // const FACTOR = 1.0;
-
-    // const currentWindowPositionTop = this.position / FACTOR;
-    // const currentWindowPositionBottom =
-    //   this.position + window.innerHeight * FACTOR;
-
-    // console.log('window position top', currentWindowPositionTop);
-    // console.log('window position bottom', currentWindowPositionBottom);
-    // console.log('current position', this.position);
-
-    const array: string[] = [];
-
     for (let i = 0; i < this.imagesData.length; i++) {
-      // distanceTopToTop = this.imagesData[i].distanceTop + this.translates[i];
-      // distanceTopToBottom =
-      //   this.imagesData[i].distanceTop -
-      //   this.imagesData[i].imageHeightPx +
-      //   this.translates[i];
-      // const windowFromTop =
-      //   currentWindowPositionTop < distanceTopToBottom &&
-      //   currentWindowPositionBottom > distanceTopToTop;
-      // const windowFromBottom =
-      //   currentWindowPositionTop < distanceTopToBottom &&
-      //   currentWindowPositionBottom > distanceTopToTop;
       let movement = 1;
-      // if (windowFromTop || windowFromBottom) {
       if (
         EMovement[this.imagesData[i].movement] == EMovement.down ||
         EMovement[this.imagesData[i].movement] == EMovement.up
@@ -144,27 +113,8 @@ export class ScrollContainerComponent implements OnInit {
             this.imagesData[i].velocity) /
             100) *
           movement;
-
-        // this.translates[i] = translateY;
-        // console.log(`move ${this.imagesData[i].fileName}: ${translateY}`);
         this.moveImage(translateY, i);
-        // console.log(`${this.imagesData[i].fileName} , `, translateY);
-        // array.push(this.imagesData[i].fileName);
       }
-      //   }
-    }
-  }
-
-  /** **********************************************************************************************
-   * ..
-   *********************************************************************************************** */
-  adaptImageParameters(): void {
-    this.formatRatio = window.innerHeight / window.innerWidth;
-    document.documentElement.clientWidth;
-    for (let i = 0; i < this.imagesData.length; i++) {
-      this.imagesData[i].distanceTop =
-        (this.imagesDataRaw[i].distanceTop * this.REFERENCE_RATIO) /
-        this.formatRatio;
     }
   }
 

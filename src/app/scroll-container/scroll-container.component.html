@@ -4,7 +4,8 @@
     <img src="../../assets/images/Nadja.png">
   </picture>
 </div>
-<div class="image-container">
+<div class="image-container"
+     [style.height.%]="pageHeight">
   <p id="text-nadja"
      class="text">nadja<br />geisser</p>
   <ng-container *ngFor="let img of imagesData; let i = index;">
