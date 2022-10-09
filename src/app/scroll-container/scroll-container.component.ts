@@ -19,7 +19,7 @@ export class ScrollContainerComponent implements OnInit {
   private coverPercentage = 0;
   private position = 0;
   private timeout;
-  pageHeight = 850;
+  private pageHeight = '';
 
   /** **********************************************************************************************
    * ..
@@ -30,16 +30,18 @@ export class ScrollContainerComponent implements OnInit {
     public dialog: MatDialog,
     private http: HttpClient
   ) {
-    let str;
+    let strImages;
+    let strPageHeight;
     if (window.innerWidth < 768) {
-      str = JSON.stringify(ImageDataMobileJson.images);
+      strImages = JSON.stringify(ImageDataMobileJson.images);
+      strPageHeight = JSON.stringify(ImageDataMobileJson.pageHeight);
     } else {
-      str = JSON.stringify(ImageDataJson.images);
+      strImages = JSON.stringify(ImageDataJson.images);
+      strPageHeight = JSON.stringify(ImageDataJson.pageHeight);
     }
-    this.imagesDataRaw = JSON.parse(str);
-    this.pageHeight = JSON.parse(
-      JSON.stringify(ImageDataMobileJson.pageHeight)
-    );
+    this.imagesDataRaw = JSON.parse(strImages);
+    this.pageHeight = JSON.parse(strPageHeight);
+
     for (let i = 0; i < this.imagesDataRaw.length; i++) {
       this.imagesData.push({ ...this.imagesDataRaw[i] });
     }
@@ -71,6 +73,9 @@ export class ScrollContainerComponent implements OnInit {
    *********************************************************************************************** */
   ngOnInit(): void {
     this.loadImagesFile();
+    const elContainer =
+      this.elementRef.nativeElement.querySelector('.image-container');
+    this.renderer.setStyle(elContainer, 'height', `${this.pageHeight}%`);
   }
 
   /** **********************************************************************************************
