@@ -20,6 +20,7 @@ export class ScrollContainerComponent implements OnInit {
   private position = 0;
   private timeout;
   private pageHeight = '';
+  portraitFileName = '';
 
   /** **********************************************************************************************
    * ..
@@ -32,15 +33,19 @@ export class ScrollContainerComponent implements OnInit {
   ) {
     let strImages;
     let strPageHeight;
+    let strPortrait;
     if (window.innerWidth < 768) {
       strImages = JSON.stringify(ImageDataMobileJson.images);
       strPageHeight = JSON.stringify(ImageDataMobileJson.pageHeight);
+      strPortrait = JSON.stringify(ImageDataMobileJson.portraitFileName);
     } else {
       strImages = JSON.stringify(ImageDataJson.images);
       strPageHeight = JSON.stringify(ImageDataJson.pageHeight);
+      strPortrait = JSON.stringify(ImageDataJson.portraitFileName);
     }
     this.imagesDataRaw = JSON.parse(strImages);
     this.pageHeight = JSON.parse(strPageHeight);
+    this.portraitFileName = JSON.parse(strPortrait);
 
     for (let i = 0; i < this.imagesDataRaw.length; i++) {
       this.imagesData.push({ ...this.imagesDataRaw[i] });

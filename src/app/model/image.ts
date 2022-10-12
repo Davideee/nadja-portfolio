@@ -23,6 +23,7 @@ export interface DialogData {
 }
 
 export interface ImagesDto {
+  portraitFileName: string;
   images: ImageData[];
   pageHeight: number;
 }
