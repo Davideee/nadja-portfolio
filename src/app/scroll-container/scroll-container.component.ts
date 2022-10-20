@@ -1,10 +1,8 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import ImageDataJson from '../../assets/config/images.json';
-import ImageDataMobileJson from '../../assets/config/images.mobile.json';
 import { EMovement, ImageData, ImagesDto } from '../model/image';
 import { HttpClient } from '@angular/common/http';
-import { take, fromEvent } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 
 @Component({
@@ -14,13 +12,12 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 })
 export class ScrollContainerComponent implements OnInit {
   imagesData: ImageData[] = [];
-  private imagesDataRaw: ImageData[];
+  imagesDataRaw: ImageData[] = [];
   private animationFinished = false;
   private coverPercentage = 0;
   private position = 0;
-  private timeout;
-  private pageHeight = '';
-  portraitFileName = '';
+  private pageHeight?: number;
+  portraitFileName?: string;
 
   /** **********************************************************************************************
    * ..
@@ -31,26 +28,7 @@ export class ScrollContainerComponent implements OnInit {
     public dialog: MatDialog,
     private http: HttpClient
   ) {
-    let strImages;
-    let strPageHeight;
-    let strPortrait;
-    if (window.innerWidth < 768) {
-      strImages = JSON.stringify(ImageDataMobileJson.images);
-      strPageHeight = JSON.stringify(ImageDataMobileJson.pageHeight);
-      strPortrait = JSON.stringify(ImageDataMobileJson.portraitFileName);
-    } else {
-      strImages = JSON.stringify(ImageDataJson.images);
-      strPageHeight = JSON.stringify(ImageDataJson.pageHeight);
-      strPortrait = JSON.stringify(ImageDataJson.portraitFileName);
-    }
-    this.imagesDataRaw = JSON.parse(strImages);
-    this.pageHeight = JSON.parse(strPageHeight);
-    this.portraitFileName = JSON.parse(strPortrait);
-
-    for (let i = 0; i < this.imagesDataRaw.length; i++) {
-      this.imagesData.push({ ...this.imagesDataRaw[i] });
-    }
-
+    this.loadConfigFile();
     fromEvent(this.elementRef.nativeElement, 'scroll').subscribe((e) => {
       this.position = elementRef.nativeElement.scrollTop;
       this.coverPercentage =
@@ -69,41 +47,36 @@ export class ScrollContainerComponent implements OnInit {
       }
       this.calcNewImagePositions();
     });
-
-    this.timeout = setTimeout(() => this.getImageSize(), 500);
   }
 
   /** **********************************************************************************************
    * ..
    *********************************************************************************************** */
-  ngOnInit(): void {
-    this.loadImagesFile();
-    const elContainer =
-      this.elementRef.nativeElement.querySelector('.image-container');
-    this.renderer.setStyle(elContainer, 'height', `${this.pageHeight}%`);
-  }
+  loadConfigFile() {
+    let path = 'assets/config/';
 
-  /** **********************************************************************************************
-   * ..
-   *********************************************************************************************** */
-  getImageSize() {
-    let height;
-    let width;
-    for (let i = 0; i < this.imagesData.length; i++) {
-      const el = this.elementRef.nativeElement.querySelector(`#image${i}`);
-      height = document.getElementById(`image${i}`)?.clientHeight;
-      width = document.getElementById(`image${i}`)?.clientWidth;
-
-      if (height && width) {
-        this.imagesData[i].imageHeightPx = height;
-        this.imagesData[i].imageWidthPx = width;
-      } else {
-        console.log('Could not retrive image size. Try again.');
-        this.timeout = setTimeout(() => this.getImageSize(), 500);
-        break;
-      }
+    if (window.innerWidth < 768) {
+      path += 'images.mobile.json';
+    } else {
+      path += 'images.json';
     }
+    this.http.get<ImagesDto>(path).subscribe((dto) => {
+      this.imagesDataRaw = dto.images;
+      this.pageHeight = dto.pageHeight;
+      this.portraitFileName = dto.portraitFileName;
+      const elContainer =
+        this.elementRef.nativeElement.querySelector('.image-container');
+      this.renderer.setStyle(elContainer, 'height', `${this.pageHeight}%`);
+      for (let i = 0; i < this.imagesDataRaw.length; i++) {
+        this.imagesData.push({ ...this.imagesDataRaw[i] });
+      }
+    });
   }
+
+  /** **********************************************************************************************
+   * ..
+   *********************************************************************************************** */
+  ngOnInit(): void {}
 
   /** **********************************************************************************************
    * ..
@@ -126,18 +99,6 @@ export class ScrollContainerComponent implements OnInit {
         this.moveImage(translateY, i);
       }
     }
-  }
-
-  /** **********************************************************************************************
-   * ..
-   *********************************************************************************************** */
-  loadImagesFile() {
-    this.http
-      .get<ImagesDto>('assets/config/images.json')
-      .pipe(take(1))
-      .subscribe((data) => {
-        this.imagesData = data.images;
-      });
   }
 
   /** **********************************************************************************************

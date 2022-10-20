@@ -6,14 +6,9 @@ import { AppComponent } from './app.component';
 import { ScrollContainerComponent } from './scroll-container/scroll-container.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { NameContainerComponent } from './name-container/name-container.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ScrollContainerComponent,
-    NameContainerComponent,
-  ],
+  declarations: [AppComponent, ScrollContainerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
