@@ -59,7 +59,12 @@ export class PortraitComponent implements OnInit {
    * ..
    *********************************************************************************************** */
   move(move: number) {
-    const elIcon = this.elementRef.nativeElement.querySelector('.icon');
+    const elCont =
+      this.elementRef.nativeElement.querySelector('.icon-container');
+    this.renderer.setStyle(elCont, 'bottom', `${move - this.clipPos}%`);
+    const elIcon = this.elementRef.nativeElement.querySelector(
+      '.icon-container-icon'
+    );
     this.renderer.setStyle(elIcon, 'bottom', `${move - this.clipPos}%`);
 
     const elImg = this.elementRef.nativeElement.querySelector('.img');

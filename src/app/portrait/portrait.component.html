@@ -1,9 +1,10 @@
 <div class="portrait">
-  <div class="icon"
+  <div class="icon-container"
        (pointerdown)="clicked = true"
        (pointerup)="clicked = false"
        (pointerleave)="clicked = false">
-    <svg-icon src="../../assets/icons/knob.svg"></svg-icon>
+    <svg-icon class="icon-container-icon"
+              src="../../assets/icons/knob.svg"></svg-icon>
   </div>
   <picture>
     <img class="img"

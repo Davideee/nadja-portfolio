@@ -14,28 +14,18 @@ body {
 
 @font-face {
   font-family: 'AvantGardeBold';
-  src: url('./assets/fonts/ITC Avant Garde Gothic Std Bold_.otf')
+  src: url('./assets/fonts/ITC Avant Garde Gothic Std Bold.otf')
     format('truetype');
 
-  font-family: 'ITCAvantGardeStd-BkCnObl';
-  src: url('./assets/fonts/ITCAvantGardeStd-BkCnObl.otf') format('truetype');
+  font-family: 'Inter-Bold';
+  src: url('./assets/fonts/Inter-Bold.ttf') format('truetype');
   font-family: 'ITCAvantGardeStd-BkObl';
-  src: url('./assets/fonts/ITCAvantGardeStd-BkObl.otf') format('truetype');
-  font-family: 'ITCAvantGardeStd-BoldCnObl';
-  src: url('./assets/fonts/ITCAvantGardeStd-BoldCnObl.otf') format('truetype');
-  font-family: 'ITCAvantGardeStd-BoldObl';
-  src: url('./assets/fonts/ITCAvantGardeStd-BoldObl.otf') format('truetype');
-  font-family: 'ITCAvantGardeStd-DemiCnObl';
-  src: url('./assets/fonts/ITCAvantGardeStd-DemiCnObl.otf') format('truetype');
-  font-family: 'ITCAvantGardeStd-DemiObl';
-  src: url('./assets/fonts/ITCAvantGardeStd-DemiObl.otf') format('truetype');
-
-  font-family: 'ITCAvantGardeStd-MdCnObl';
-  src: url('./assets/fonts/ITCAvantGardeStd-MdCnObl.otf') format('truetype');
-
-  font-family: 'ITCAvantGardeStd-MdObl';
-  src: url('./assets/fonts/ITCAvantGardeStd-MdObl.otf') format('truetype');
-
-  font-family: 'ITCAvantGardeStd-XLtCn';
-  src: url('./assets/fonts/ITCAvantGardeStd-XLtCn.otf') format('truetype');
+  font-family: 'Inter-Light';
+  src: url('./assets/fonts/Inter-Light.ttf') format('truetype');
+  font-family: 'Inter-ExtraLight';
+  src: url('./assets/fonts/Inter-ExtraLight.ttf') format('truetype');
+  font-family: 'Inter-Regular';
+  src: url('./assets/fonts/Inter-Regular.ttf') format('truetype');
+  font-family: 'Inter-Thin';
+  src: url('./assets/fonts/Inter-Thin.ttf') format('truetype');
 }

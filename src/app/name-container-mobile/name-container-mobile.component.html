@@ -1,11 +1,15 @@
 <div class="name">
+  <div class="name__title">
+    <span class="name__title-text">nadja<br />geisser</span>
+  </div>
+
   <swiper [pagination]="true"
           class="mySwiper"
           class="name__swiper">
     <ng-template swiperSlide>
       <div class="name__image-container">
         <picture>
-          <img class="img"
+          <img class="name__image-container-img"
                src="../../assets/images/{{portraitFileName}}">
         </picture>
       </div>
@@ -14,8 +18,10 @@
       <div class="name__main">
         <div class="name__main-container">
           <span class="name__main-title">«Dare to fail, dare to win.»</span><br><br><br>
-          <span class="name__main-name"><b>Nadja Geisser</b>, Grafik Design & UI/UX</span><br><br>
-          <div class="name__main-description">
+          <span class="name__main-name name__main-name-bold">Nadja Geisser</span>
+          <span class="name__main-name">, Grafik Design & UI/UX</span><br><br>
+          <div class="
+                name__main-description">
             <span>Nadja erzählt Geschichten – in Worten, Bildern,<br>
               Farben, Formen und Interaktionen. Sie liebt<br>
               Design, das funktioniert, innovativ ist, auffällt und<br>
@@ -27,11 +33,18 @@
         </div>
       </div>
     </ng-template>
+    <ng-template swiperSlide>
+      <div class="name__image-container">
+        <picture>
+          <img class="name__image-container-img"
+               src="../../assets/images/mountain.gif">
+        </picture>
+      </div>
+    </ng-template>
 
   </swiper>
   <div class="name__footer-container slide-in">
-    <mat-icon class="icon"
-              fontIcon="keyboard_double_arrow_down">keyboard_double_arrow_down</mat-icon>
+    <svg-icon src="../../assets/icons/two-arrows.svg"></svg-icon>
     <span>scroll to explore</span>
   </div>
 </div>

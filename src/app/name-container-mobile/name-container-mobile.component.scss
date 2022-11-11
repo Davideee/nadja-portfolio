@@ -7,15 +7,30 @@
   background-color: rgb(238, 238, 233);
 
   &__swiper {
-    height: 80vh;
+    height: 65vh;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: center;
+    padding-top: 5vh;
+
+    &-text {
+      font-family: 'Intel-Bold', sans-serif;
+      font-size: 5vh;
+      font-weight: 800;
+      line-height: 120%;
+    }
   }
 
   &__image-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding: 100px;
+    align-items: center;
 
-    .img {
+    &-img {
+      padding-top: 5vh;
       height: 50vh;
       width: auto;
     }
@@ -32,21 +47,24 @@
     &-title {
       font-size: 3vh;
       line-height: normal;
-      font-family: 'AvantGardeBold', sans-serif;
+      font-family: 'Inter-Regular', sans-serif;
     }
 
     &-name {
       font-size: 2vh;
       line-height: normal;
       font-weight: normal;
-      font-family: 'ITCAvantGardeStd-BkCnObl', sans-serif;
+      font-family: 'Inter-Regular', sans-serif;
+      &-bold {
+        font-family: 'Inter-Bold', sans-serif;
+      }
     }
 
     &-description {
-      font-size: 2vh;
+      font-size: 14px;
       line-height: normal;
-      font-weight: lighter;
-      font-family: 'ITCAvantGardeStd-BkCnObl', sans-serif;
+      font-weight: 600;
+      font-family: 'Inter-Thin', sans-serif;
     }
   }
 
