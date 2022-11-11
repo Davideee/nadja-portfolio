@@ -10,7 +10,7 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
   templateUrl: './scroll-container.component.html',
   styleUrls: ['./scroll-container.component.scss'],
 })
-export class ScrollContainerComponent implements OnInit {
+export class ScrollContainerComponent {
   imagesData: ImageData[] = [];
   imagesDataRaw: ImageData[] = [];
   private animationFinished = false;
@@ -73,13 +73,6 @@ export class ScrollContainerComponent implements OnInit {
         this.imagesData.push({ ...this.imagesDataRaw[i] });
       }
     });
-  }
-
-  /** **********************************************************************************************
-   * ..
-   *********************************************************************************************** */
-  ngOnInit(): void {
-    console.log(this.mobile);
   }
 
   /** **********************************************************************************************

@@ -7,11 +7,12 @@
   </div>
   <picture>
     <img class="img"
-         (loaded)="loaded($event)"
+         (load)="loaded($event)"
          src="../../assets/images/{{portraitFileName}}">
   </picture>
   <picture>
-    <img class="img__back"
+    <img *ngIf="show"
+         class="img__back"
          src="../../assets/images/mountain.gif">
   </picture>
 </div>

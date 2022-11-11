@@ -1,15 +1,7 @@
-import {
-  AfterContentChecked,
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  Renderer2,
-} from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
-import { filter, fromEvent, tap } from 'rxjs';
+import { filter, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-protrait',
@@ -25,6 +17,7 @@ export class PortraitComponent implements OnInit {
   imBottom = 0;
   imTop = 0;
   imHeight = 0;
+  show = false;
 
   /** **********************************************************************************************
    * ..
@@ -65,13 +58,6 @@ export class PortraitComponent implements OnInit {
   /** **********************************************************************************************
    * ..
    *********************************************************************************************** */
-  start() {
-    console.log('start');
-  }
-
-  /** **********************************************************************************************
-   * ..
-   *********************************************************************************************** */
   move(move: number) {
     const elIcon = this.elementRef.nativeElement.querySelector('.icon');
     this.renderer.setStyle(elIcon, 'bottom', `${move - this.clipPos}%`);
@@ -84,6 +70,6 @@ export class PortraitComponent implements OnInit {
    * ..
    *********************************************************************************************** */
   loaded(event: Event) {
-    // console.log(event);
+    this.show = true;
   }
 }
