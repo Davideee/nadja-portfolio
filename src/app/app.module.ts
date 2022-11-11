@@ -6,15 +6,26 @@ import { AppComponent } from './app.component';
 import { ScrollContainerComponent } from './scroll-container/scroll-container.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { PortraitComponent } from './portrait/portrait.component';
+import { NameContainerComponent } from './name-container/name-container.component';
+import { MatIconModule } from '@angular/material/icon';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @NgModule({
-  declarations: [AppComponent, ScrollContainerComponent],
+  declarations: [
+    AppComponent,
+    ScrollContainerComponent,
+    PortraitComponent,
+    NameContainerComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    MatIconModule,
     HttpClientModule,
+    AngularSvgIconModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

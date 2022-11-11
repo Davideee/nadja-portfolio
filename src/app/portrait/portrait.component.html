@@ -1,0 +1,17 @@
+<div class="portrait">
+  <div class="icon"
+       (pointerdown)="clicked = true"
+       (pointerup)="clicked = false"
+       (pointerleave)="clicked = false">
+    <svg-icon src="../../assets/icons/knob.svg"></svg-icon>
+  </div>
+  <picture>
+    <img class="img"
+         (loaded)="loaded($event)"
+         src="../../assets/images/{{portraitFileName}}">
+  </picture>
+  <picture>
+    <img class="img__back"
+         src="../../assets/images/Group5.png">
+  </picture>
+</div>

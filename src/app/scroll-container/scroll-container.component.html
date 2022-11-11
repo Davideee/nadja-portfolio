@@ -1,11 +1,4 @@
-<div class="name-container">
-  <p class="text">nadja<br />geisser</p>
-  <ng-container *ngIf="portraitFileName">
-    <picture>
-      <img src="../../assets/images/{{portraitFileName}}">
-    </picture>
-  </ng-container>
-</div>
+<app-name-container [portraitFileName]="portraitFileName!"></app-name-container>
 <div class="image-container">
   <p id="text-nadja"
      class="text">nadja<br />geisser</p>
