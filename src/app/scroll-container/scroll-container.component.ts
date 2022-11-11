@@ -15,9 +15,10 @@ export class ScrollContainerComponent implements OnInit {
   imagesDataRaw: ImageData[] = [];
   private animationFinished = false;
   private coverPercentage = 0;
-  private position = 0;
+  position = 0;
   private pageHeight?: number;
   portraitFileName?: string;
+  mobile = false;
 
   /** **********************************************************************************************
    * ..
@@ -56,6 +57,7 @@ export class ScrollContainerComponent implements OnInit {
     let path = 'assets/config/';
 
     if (window.innerWidth < 768) {
+      this.mobile = true;
       path += 'images.mobile.json';
     } else {
       path += 'images.json';
@@ -76,7 +78,9 @@ export class ScrollContainerComponent implements OnInit {
   /** **********************************************************************************************
    * ..
    *********************************************************************************************** */
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.mobile);
+  }
 
   /** **********************************************************************************************
    * ..

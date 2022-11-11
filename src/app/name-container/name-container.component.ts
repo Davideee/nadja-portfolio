@@ -1,7 +1,10 @@
-import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { HttpClient } from '@angular/common/http';
-import { fromEvent } from 'rxjs';
+import {
+  Component,
+  ElementRef,
+  Input,
+  Renderer2,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-name-container',
@@ -10,19 +13,24 @@ import { fromEvent } from 'rxjs';
 })
 export class NameContainerComponent {
   @Input() portraitFileName!: string;
+  @Input() position!: number;
 
   /** **********************************************************************************************
    * ..
    *********************************************************************************************** */
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
-    public dialog: MatDialog,
-    private http: HttpClient
-  ) {}
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
-  /** **********************************************************************************************
-   * ..
-   *********************************************************************************************** */
-  loadConfigFile() {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['position']) {
+      const cv = changes['position'].currentValue;
+      const elName = this.elementRef.nativeElement.querySelector(
+        '.name__footer-container'
+      );
+      this.renderer.setStyle(
+        elName,
+        'transform',
+        `translate3d(${cv}px, ${cv}px,0vw)`
+      );
+    }
+  }
 }

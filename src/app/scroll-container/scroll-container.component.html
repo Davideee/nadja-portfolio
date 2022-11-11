@@ -1,4 +1,10 @@
-<app-name-container [portraitFileName]="portraitFileName!"></app-name-container>
+<app-name-container-mobile *ngIf="mobile; else notMobile "
+                           [portraitFileName]="portraitFileName!"
+                           [position]="position"></app-name-container-mobile>
+<ng-template #notMobile>
+  <app-name-container [portraitFileName]="portraitFileName!"
+                      [position]="position"></app-name-container>
+</ng-template>
 <div class="image-container">
   <p id="text-nadja"
      class="text">nadja<br />geisser</p>
