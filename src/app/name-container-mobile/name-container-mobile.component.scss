@@ -11,9 +11,9 @@
   }
 
   &__title {
-    display: flex;
-    justify-content: center;
-    padding-top: 5vh;
+    // display: flex;
+    // justify-content: center;
+    padding: 5vh 0 0 2vh;
 
     &-text {
       font-family: 'Intel-Bold', sans-serif;
@@ -37,12 +37,12 @@
   }
 
   &__main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    padding: 8vh 0 0 2vh;
     height: 100%;
     width: 95vw;
-    padding: 15px;
 
     &-title {
       font-size: 3vh;
