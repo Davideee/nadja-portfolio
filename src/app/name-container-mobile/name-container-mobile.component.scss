@@ -7,7 +7,7 @@
   background-color: rgb(238, 238, 233);
 
   &__swiper {
-    height: 90vh;
+    height: 80vh;
   }
 
   &__image-container {
@@ -16,7 +16,7 @@
     padding: 100px;
 
     .img {
-      height: 60vh;
+      height: 50vh;
       width: auto;
     }
   }
@@ -27,23 +27,26 @@
     justify-content: center;
     height: 100%;
     width: 95vw;
-    padding: 10px;
+    padding: 15px;
 
     &-title {
       font-size: 3vh;
       line-height: normal;
+      font-family: 'AvantGardeBold', sans-serif;
     }
 
     &-name {
       font-size: 2vh;
       line-height: normal;
       font-weight: normal;
+      font-family: 'ITCAvantGardeStd-BkCnObl', sans-serif;
     }
 
     &-description {
       font-size: 2vh;
       line-height: normal;
       font-weight: lighter;
+      font-family: 'ITCAvantGardeStd-BkCnObl', sans-serif;
     }
   }
 
