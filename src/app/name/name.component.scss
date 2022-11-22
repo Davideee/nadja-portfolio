@@ -1,0 +1,54 @@
+.name {
+  width: 100%;
+
+  &__main {
+    &-container {
+      animation: appear 4s;
+      background-color: inherit;
+      height: 90vh;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 2;
+    }
+
+    &-title {
+      font-size: 37px;
+      font-family: 'Inter-Regular', sans-serif;
+      font-weight: 300;
+    }
+
+    &-name {
+      font-size: 24px;
+      line-height: normal;
+      font-weight: normal;
+      font-family: 'Inter-Regular', sans-serif;
+      &-bold {
+        font-size: 24px;
+        font-family: 'Inter-Bold', sans-serif;
+      }
+    }
+
+    &-description {
+      font-size: 20px;
+      line-height: 1.1;
+      font-weight: 600;
+      font-family: 'Inter-Thin', sans-serif;
+    }
+  }
+
+  &__footer-container {
+    animation: appear 5s;
+    display: flex;
+    height: 10vh;
+    padding-left: 20px;
+    justify-content: flex-start;
+    align-items: center;
+
+    & .icon {
+      font-size: 50px;
+      height: 50px;
+      width: 50px;
+    }
+  }
+}

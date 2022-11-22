@@ -1,9 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { fromEvent, Subject, takeUntil } from 'rxjs';
 
 @Component({

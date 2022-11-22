@@ -6,11 +6,7 @@
 .image-container {
   width: 100vw;
   overflow: visible;
-  background-color: rgb(48, 48, 48);
   z-index: 3;
-
-  // move it outside the viewport
-  transform: translate3d(-100vw, -300vh, 0);
 
   // flex for the name
   display: flex;

@@ -1,13 +1,8 @@
-<app-name-container-mobile *ngIf="mobile; else notMobile "
-                           [portraitFileName]="portraitFileName!"
-                           [position]="position"></app-name-container-mobile>
-<ng-template #notMobile>
-  <app-name-container [portraitFileName]="portraitFileName!"
-                      [position]="position"></app-name-container>
-</ng-template>
-<div class="image-container">
-  <p id="text-nadja"
-     class="text">nadja<br />geisser</p>
+<app-name-container [animation]="animation"
+                    [portraitFileName]="portraitFileName!"
+                    [position]="position"></app-name-container>
+<div [@background]="animation ? 'dark': 'bright'"
+     class="image-container">
   <ng-container *ngFor="let img of imagesData; let i = index;">
     <picture>
       <img class="image"

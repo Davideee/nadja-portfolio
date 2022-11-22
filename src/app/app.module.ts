@@ -10,8 +10,9 @@ import { PortraitComponent } from './portrait/portrait.component';
 import { NameContainerComponent } from './name-container/name-container.component';
 import { MatIconModule } from '@angular/material/icon';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { NameContainerMobileComponent } from './name-container-mobile/name-container-mobile.component';
 import { SwiperModule } from 'swiper/angular';
+import { NameComponent } from './name/name.component';
+import { NameMobileComponent } from './name-mobile/name-mobile.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SwiperModule } from 'swiper/angular';
     ScrollContainerComponent,
     PortraitComponent,
     NameContainerComponent,
-    NameContainerMobileComponent,
+    NameComponent,
+    NameMobileComponent,
   ],
   imports: [
     BrowserModule,

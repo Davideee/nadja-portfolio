@@ -29,3 +29,21 @@ body {
   font-family: 'Inter-Thin';
   src: url('./assets/fonts/Inter-Thin.ttf') format('truetype');
 }
+
+// @keyframes appear {
+//   0% {
+//     transform: rotate3d(0, 1, 0, 180deg);
+//   }
+//   100% {
+//     transform: rotate3d(0, 1, 0, 360deg);
+//   }
+// }
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

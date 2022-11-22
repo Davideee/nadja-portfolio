@@ -5,10 +5,11 @@
 
   .img {
     position: absolute;
+    animation: appear 2s;
 
     height: 60vh;
     width: auto;
-    clip-path: inset(0% 0% 15% 0%);
+    clip-path: inset(0% 0% 0% 0%);
     z-index: 2;
 
     -webkit-user-select: none;
@@ -21,6 +22,7 @@
       z-index: 1;
       height: 60vh;
       width: auto;
+      animation: appear 2s;
 
       -webkit-user-select: none;
       -khtml-user-select: none;
@@ -31,7 +33,7 @@
   }
   .icon-container {
     position: absolute;
-    bottom: 0%;
+    bottom: -15%;
     height: 30%;
     width: 50%;
     left: 25%;

@@ -1,4 +1,4 @@
-<div class="portrait">
+<div class="portrait appear">
   <div class="icon-container"
        (pointerdown)="clicked = true"
        (pointerup)="clicked = false"
@@ -8,11 +8,11 @@
   </div>
   <picture>
     <img class="img"
-         (load)="loaded($event)"
+         (load)="loaded()"
          src="../../assets/images/{{portraitFileName}}">
   </picture>
   <picture>
-    <img *ngIf="show"
+    <img *ngIf="showCounter === 2"
          class="img__back"
          src="../../assets/images/mountain.gif">
   </picture>
